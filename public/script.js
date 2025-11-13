@@ -111,23 +111,44 @@ function initNavbarScroll() {
     });
 }
 
-// === FORM HANDLING ===
+// === FORM HANDLING (No Redirect) ===
 function initFormHandling() {
     const form = document.getElementById('waitlist-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
-        const submitButton = form.querySelector('.btn-submit');
+    const successMessage = document.getElementById('success-message');
+    const submitButton = form.querySelector('.btn-submit');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent redirect to Formspree
         submitButton.textContent = 'Submitting...';
         submitButton.disabled = true;
 
-        setTimeout(() => {
-            form.style.display = 'none';
-            const successMessage = document.getElementById('success-message');
-            if (successMessage) successMessage.style.display = 'block';
-        }, 1500);
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: formData
+            });
+
+            if (response.ok) {
+                form.reset();
+                form.style.display = 'none';
+                if (successMessage) successMessage.style.display = 'block';
+            } else {
+                alert('⚠️ Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            console.error('Form submission failed:', error);
+            alert('❌ Failed to send message. Check your internet connection.');
+        } finally {
+            submitButton.textContent = 'Join Waitlist';
+            submitButton.disabled = false;
+        }
     });
 }
+
 
 // === FORM ROLE-BASED ROUTING ===
 function initFormRouting() {
@@ -249,3 +270,4 @@ style.textContent = `
   100% { filter: hue-rotate(360deg); }
 }`;
 document.head.appendChild(style);
+
