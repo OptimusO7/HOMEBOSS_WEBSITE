@@ -158,8 +158,8 @@ function initFormRouting() {
 
     roleSelect.addEventListener('change', (e) => {
         form.action = e.target.value === 'investor'
-            ? 'https://formspree.io/f/manawern'
-            : 'https://formspree.io/f/manawern';
+            ? 'https://formspree.io/f/xvgdzygv' //can change to ideal formspree
+            : 'https://formspree.io/f/xvgdzygv'; //can change to ideal formspree
     });
 }
 
@@ -270,4 +270,5 @@ style.textContent = `
   100% { filter: hue-rotate(360deg); }
 }`;
 document.head.appendChild(style);
+
 
