@@ -54,6 +54,11 @@ app.get("/about", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "about.html"));
 });
 
+// Blog Page
+app.get("/blog",(req, res) => {
+    res.sendFile(path.join(__dirname, "public", "blog.html"));
+});
+
 // ----------------------
 // Visitor Tracking Endpoint
 // ----------------------
