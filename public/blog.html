@@ -655,13 +655,6 @@
     }, { threshold: 0.1 });
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-    /* Mobile nav */
-    const menuToggle = document.getElementById("mobile-menu");
-    const navMenu    = document.querySelector(".nav-menu");
-    if (menuToggle) menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-        menuToggle.classList.toggle("active");
-    });
     </script>
 </body>
 </html>
