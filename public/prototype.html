@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Open Graph -->
+    <meta property="og:title" content="HomeBoss Prototype Launch — Register Now" />
+    <meta property="og:description" content="Register for the HomeBoss prototype launch on August 8, 2026. Join as an investor, customer, or spectator." />
+    <meta property="og:image" content="https://myhomeboss.com/homeboss-preview.png" />
+    <meta property="og:url" content="https://myhomeboss.com/prototype" />
+    <meta property="og:type" content="website" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for the HomeBoss prototype launch on August 8, 2026.">
+    <title>HomeBoss — Prototype Launch Registration</title>
+    <link rel="icon" href="homeboss.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- International phone input (country codes + flags) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css">
+</head>
+<body class="prototype-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;">
+                    <img src="homeboss.png" alt="HomeBoss Logo" class="logo-icon">
+                    <span class="brand-name">HomeBoss</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Prototype Registration Section -->
+    <section class="proto-hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="proto-grid">
+                <!-- Left: launch info + countdown -->
+                <div class="proto-info reveal active">
+                    <span class="proto-badge">🚀 Prototype Launch</span>
+                    <h1 class="proto-title">
+                        The <span class="gradient-text">HomeBoss</span> prototype goes live on
+                        <span class="gradient-text">August 8, 2026</span>
+                    </h1>
+                    <p class="proto-subtitle">
+                        Be in the room when we reveal the future of smart living. Register below to
+                        secure your spot — whether you're backing us, buying in, or just watching it unfold.
+                    </p>
+
+                    <div class="countdown" id="countdown" aria-label="Time until launch">
+                        <div class="countdown-item"><span id="cd-days">--</span><small>Days</small></div>
+                        <div class="countdown-item"><span id="cd-hours">--</span><small>Hours</small></div>
+                        <div class="countdown-item"><span id="cd-mins">--</span><small>Minutes</small></div>
+                        <div class="countdown-item"><span id="cd-secs">--</span><small>Seconds</small></div>
+                    </div>
+                </div>
+
+                <!-- Right: registration form -->
+                <div class="proto-form-wrap reveal active">
+                    <div class="proto-card">
+                        <h2 class="proto-card-title">Register for the launch</h2>
+                        <p class="proto-card-sub">It takes less than a minute. You'll get a confirmation email right away.</p>
+
+                        <form id="proto-form" class="proto-form" novalidate>
+                            <div class="form-group">
+                                <label for="fullName">Full name</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Jane Doe" autocomplete="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Phone number" autocomplete="tel" required>
+                                <small class="field-hint">Select your country, then enter your number.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>I'm joining as a…</label>
+                                <div class="role-options">
+                                    <label class="role-option">
+                                        <input type="radio" name="role" value="investor" required>
+                                        <span class="role-card">
+                                            <span class="role-emoji">📈</span>
+                                            <span class="role-name">Possible investor</span>
+                                        </span>
+                                    </label>
+                                    <label class="role-option">
+                                        <input type="radio" name="role" value="customer">
+                                        <span class="role-card">
+                                            <span class="role-emoji">🏡</span>
+                                            <span class="role-name">Possible customer</span>
+                                        </span>
+                                    </label>
+                                    <label class="role-option">
+                                        <input type="radio" name="role" value="spectator">
+                                        <span class="role-card">
+                                            <span class="role-emoji">👀</span>
+                                            <span class="role-name">Just a spectator</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <p class="form-error" id="form-error" role="alert"></p>
+
+                            <button type="submit" class="btn btn-primary btn-submit glow-effect" id="proto-submit">
+                                Register for the launch
+                            </button>
+                        </form>
+
+                        <div id="proto-success" class="success-message" style="display:none;">
+                            <div class="success-icon">✓</div>
+                            <h3>You're registered!</h3>
+                            <p>We've saved your spot for August 8, 2026. A confirmation email is on its way to your inbox.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Optimus Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
+    <script src="prototype.js"></script>
+</body>
+</html>
