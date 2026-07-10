@@ -28,6 +28,18 @@
       "dest": "/public/about.html"
     },
     {
+      "src": "/prototype.js",
+      "dest": "/public/prototype.js"
+    },
+    {
+      "src": "/prototype.html",
+      "dest": "/public/prototype.html"
+    },
+    {
+      "src": "/prototype",
+      "dest": "/server.js"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/server.js"
     },
