@@ -215,6 +215,51 @@ function initAnalytics() {
     });
 }
 
+// === PROTOTYPE LAUNCH POPUP (after 3 seconds) ===
+function initPrototypePopup() {
+    const overlay = document.getElementById('proto-popup-overlay');
+    if (!overlay) return;
+
+    const closeBtn = document.getElementById('proto-popup-close');
+    const dismissBtn = document.getElementById('proto-popup-dismiss');
+
+    const openPopup = () => {
+        overlay.classList.add('show');
+        overlay.setAttribute('aria-hidden', 'false');
+    };
+    const closePopup = () => {
+        overlay.classList.remove('show');
+        overlay.setAttribute('aria-hidden', 'true');
+    };
+
+    // Show once every 24h so returning visitors aren't nagged on every visit.
+    // (Remove this block if you want it to show on every page load.)
+    let shouldShow = true;
+    try {
+        const last = localStorage.getItem('homeboss_proto_popup_seen');
+        if (last && (Date.now() - Number(last)) < 24 * 60 * 60 * 1000) {
+            shouldShow = false;
+        }
+    } catch (e) { /* localStorage unavailable — show anyway */ }
+
+    if (!shouldShow) return;
+
+    // Pop up 3 seconds after the page loads
+    setTimeout(() => {
+        openPopup();
+        try { localStorage.setItem('homeboss_proto_popup_seen', String(Date.now())); } catch (e) {}
+    }, 3000);
+
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    if (dismissBtn) dismissBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closePopup();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
+    });
+}
+
 // === INITIALIZE ALL FUNCTIONS ===
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🏠 HomeBoss Website Initialized');
@@ -228,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDemoVideo();
     initParallax();
     initAnalytics();
+    initPrototypePopup();
 });
 
 // === PERFORMANCE OPTIMIZATION ===
