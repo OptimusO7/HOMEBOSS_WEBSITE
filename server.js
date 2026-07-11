@@ -1,6 +1,5 @@
 // ============================================
 // HOMEBOSS - NODE.JS SERVER (Enhanced Analytics)
-// Serverless-safe MongoDB connection for Vercel
 // ============================================
 
 const express = require("express");
@@ -17,55 +16,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ----------------------
-// MongoDB Connection (cached for serverless)
+// MongoDB Connection
 // ----------------------
-// On Vercel, every request may hit a fresh serverless instance. Calling
-// mongoose.connect() once at module load and never awaiting it means a cold
-// instance tries to write before the connection is ready — Mongoose then
-// buffers the query, times out after ~10s, and you get a generic 500
-// ("Something went wrong"). The pattern below caches a single connection
-// promise across invocations and is awaited inside each handler.
 const MONGO_URI = process.env.MONGODB_URI;
-
-let cached = global.__mongooseConn;
-if (!cached) {
-    cached = global.__mongooseConn = { conn: null, promise: null };
-}
-
-async function connectDB() {
-    if (cached.conn) return cached.conn;
-
-    if (!MONGO_URI) {
-        throw new Error("MONGODB_URI is not set. Add it in Vercel > Settings > Environment Variables.");
-    }
-
-    if (!cached.promise) {
-        cached.promise = mongoose
-            .connect(MONGO_URI, {
-                // Fail fast instead of hanging if Atlas is unreachable
-                // (e.g. IP not allow-listed). Surfaces the real problem quicker.
-                serverSelectionTimeoutMS: 8000
-            })
-            .then((m) => {
-                console.log("✅ MongoDB connected successfully");
-                return m;
-            })
-            .catch((err) => {
-                // Reset so the next request can retry the connection
-                cached.promise = null;
-                throw err;
-            });
-    }
-
-    cached.conn = await cached.promise;
-    return cached.conn;
-}
+mongoose.connect(MONGO_URI)
+    .then(() => console.log("✅ MongoDB connected successfully"))
+    .catch(err => console.error("❌ MongoDB connection failed:", err));
 
 // ----------------------
 // Visitor Schema
 // ----------------------
-// Guard against "OverwriteModelError" when a warm serverless instance
-// re-evaluates this file.
 const visitorSchema = new mongoose.Schema({
     ip: String,
     city: String,
@@ -73,11 +33,17 @@ const visitorSchema = new mongoose.Schema({
     country: String,
     date: { type: Date, default: Date.now }
 });
-const Visitor = mongoose.models.Visitor || mongoose.model("Visitor", visitorSchema);
+const Visitor = mongoose.model("Visitor", visitorSchema);
 
 // ----------------------
 // Email (Nodemailer) Setup
 // ----------------------
+// Configure these in your environment (.env locally, or Vercel env vars):
+//   EMAIL_HOST      e.g. smtp.gmail.com
+//   EMAIL_PORT      e.g. 465 (SSL) or 587 (TLS)
+//   EMAIL_USER      the sending mailbox address
+//   EMAIL_PASS      an app password (NOT your normal login password)
+//   EMAIL_FROM      optional friendly from, e.g. "HomeBoss <noreply@myhomeboss.com>"
 let transporter = null;
 if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     transporter = nodemailer.createTransport({
@@ -160,7 +126,7 @@ app.get("/about", (req, res) => {
 });
 
 // Blog Page
-app.get("/blog", (req, res) => {
+app.get("/blog",(req, res) => {
     res.sendFile(path.join(__dirname, "public", "blog.html"));
 });
 
@@ -174,9 +140,6 @@ app.get("/prototype", (req, res) => {
 // ----------------------
 app.post("/api/prototype-register", async (req, res) => {
     try {
-        // Ensure DB is connected before we try to write (critical on serverless)
-        await connectDB();
-
         let { fullName, phone, countryCode, email, role } = req.body;
 
         // Basic validation
@@ -207,11 +170,13 @@ app.post("/api/prototype-register", async (req, res) => {
             role
         });
 
-        // Send confirmation email (won't fail the request if it errors)
+        // Send confirmation email (non-blocking for the user experience,
+        // but we await so we can surface delivery problems if needed)
         try {
             await sendPrototypeConfirmation({ fullName, email, role });
         } catch (mailErr) {
             console.error("Confirmation email failed:", mailErr.message);
+            // Registration still succeeded — don't fail the whole request
         }
 
         res.json({ success: true, message: "Registration successful", id: registration._id });
@@ -220,8 +185,7 @@ app.post("/api/prototype-register", async (req, res) => {
         if (err.code === 11000) {
             return res.status(409).json({ success: false, error: "This email is already registered for the prototype launch." });
         }
-        // Log the full error so Vercel's function logs show the real cause
-        console.error("Prototype registration error:", err);
+        console.error("Prototype registration error:", err.message);
         res.status(500).json({ success: false, error: "Something went wrong. Please try again." });
     }
 });
@@ -231,8 +195,6 @@ app.post("/api/prototype-register", async (req, res) => {
 // ----------------------
 app.post("/api/track-visit", async (req, res) => {
     try {
-        await connectDB();
-
         // Check if visitor already has a cookie
         const visitorCookie = req.cookies.homeboss_visitor;
         if (visitorCookie) {
@@ -241,13 +203,13 @@ app.post("/api/track-visit", async (req, res) => {
 
         // Get client IP
         let clientIp = req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
-        if (clientIp && clientIp.startsWith("::ffff:")) clientIp = clientIp.replace("::ffff:", "");
+        if (clientIp.startsWith("::ffff:")) clientIp = clientIp.replace("::ffff:", "");
 
         // Skip private/local IPs
         const privateIp = /^(10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[0-1]))/;
         let geo = { city: "Local Network", region: "Local Network", country: "Local Network" };
 
-        if (clientIp && !privateIp.test(clientIp) && clientIp !== "127.0.0.1") {
+        if (!privateIp.test(clientIp) && clientIp !== "127.0.0.1") {
             try {
                 const geoRes = await axios.get(`https://ipapi.co/${clientIp}/json/`);
                 geo = {
@@ -286,8 +248,6 @@ app.post("/api/track-visit", async (req, res) => {
 // ----------------------
 app.get("/api/visitors", async (req, res) => {
     try {
-        await connectDB();
-
         const total = await Visitor.countDocuments();
         const areas = await Visitor.aggregate([
             { $group: { _id: "$country", count: { $sum: 1 } } },
@@ -324,13 +284,11 @@ app.use((err, req, res, next) => {
 });
 
 // ----------------------
-// Start Server (local only — Vercel invokes the exported app)
+// Start Server
 // ----------------------
-if (!process.env.VERCEL) {
-    app.listen(PORT, () => {
-        console.log(`🏠 HomeBoss server running on port ${PORT}`);
-        console.log(`📍 Local: http://localhost:${PORT}`);
-    });
-}
+app.listen(PORT, () => {
+    console.log(`🏠 HomeBoss server running on port ${PORT}`);
+    console.log(`📍 Local: http://localhost:${PORT}`);
+});
 
 module.exports = app;
