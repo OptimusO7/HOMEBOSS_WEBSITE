@@ -7,6 +7,8 @@ const LAUNCH_DATE = new Date("2026-08-08T00:00:00");
 
 // --- Country-code phone input ---
 let iti = null;
+let utilsReady = false; // becomes true once intl-tel-input's utils.js has loaded
+
 (function initPhoneInput() {
     const input = document.getElementById("phone");
     if (!input || typeof window.intlTelInput !== "function") return;
@@ -15,28 +17,40 @@ let iti = null;
         initialCountry: "gh",
         preferredCountries: ["gh", "ng", "us", "gb", "za", "ke"],
         separateDialCode: true,
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js"
+        utilsScript: "/vendor/intl-tel-input/js/utils.js"
     });
+
+    // Mark utils as ready when the lazy-loaded utils.js finishes.
+    // On mobile this can arrive AFTER the user has already filled out the form,
+    // so we must never hard-block validation on it.
+    if (iti && iti.promise && typeof iti.promise.then === "function") {
+        iti.promise.then(() => { utilsReady = true; }).catch(() => { utilsReady = false; });
+    }
 })();
+
+// True only when the phone-formatting utils have actually loaded.
+function phoneUtilsLoaded() {
+    return utilsReady || typeof window.intlTelInputUtils !== "undefined";
+}
 
 // Returns { phone, countryCode } using the intl-tel-input widget,
 // with a graceful fallback if the utils script didn't load.
 function getPhoneData() {
     const input = document.getElementById("phone");
     if (iti) {
-        const dial = iti.getSelectedCountryData().dialCode
-            ? "+" + iti.getSelectedCountryData().dialCode
-            : "";
+        const selected = iti.getSelectedCountryData() || {};
+        const dial = selected.dialCode ? "+" + selected.dialCode : "";
         let full = "";
         try {
-            full = iti.getNumber(); // E.164, e.g. +233206782232
+            full = iti.getNumber(); // E.164, e.g. +233206782232 (needs utils.js)
         } catch (e) {
             full = "";
         }
         if (!full) {
-            // Fallback: combine dial code with the raw typed digits
+            // Fallback: combine dial code with the raw typed digits.
+            // This is the path most mobile users hit when utils.js is slow.
             const raw = (input.value || "").replace(/[^\d]/g, "");
-            full = dial + raw;
+            full = raw ? dial + raw : "";
         }
         return { phone: full, countryCode: dial };
     }
@@ -107,12 +121,28 @@ function getPhoneData() {
 
         // Client-side validation
         if (!fullName) return showError("Please enter your full name.");
-        if (!phone || phone.replace(/[^\d]/g, "").length < 6) {
+
+        const digits = phone.replace(/[^\d]/g, "");
+        if (!digits || digits.length < 6) {
             return showError("Please enter a valid phone number.");
         }
-        if (iti && typeof iti.isValidNumber === "function" && !iti.isValidNumber()) {
-            return showError("That phone number doesn't look right for the selected country.");
+
+        // Strict per-country validity check — ONLY when utils.js is loaded.
+        // On mobile, utils.js is often not ready yet; in that case we skip the
+        // strict check and rely on the basic length check above plus the
+        // server-side validation. This is the fix for mobile users being blocked.
+        if (iti && phoneUtilsLoaded() && typeof iti.isValidNumber === "function") {
+            let valid = true;
+            try {
+                valid = iti.isValidNumber();
+            } catch (e) {
+                valid = true; // don't block if the check itself errors
+            }
+            if (!valid) {
+                return showError("That phone number doesn't look right for the selected country.");
+            }
         }
+
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return showError("Please enter a valid email address.");
         }
@@ -139,8 +169,10 @@ function getPhoneData() {
 
             if (res.ok && data.success) {
                 form.style.display = "none";
-                if (successBox) successBox.style.display = "block";
-                successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+                if (successBox) {
+                    successBox.style.display = "block";
+                    successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
             } else {
                 showError(data.error || "Something went wrong. Please try again.");
             }
