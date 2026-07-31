@@ -135,6 +135,11 @@ app.get("/prototype", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "prototype.html"));
 });
 
+// Studio Page
+app.get("/studio", (req, res) => {
+      res.sendFile(path.join(__dirname, "public", "studio.html"));
+  });
+
 // ----------------------
 // Prototype Registration Endpoint
 // ----------------------
