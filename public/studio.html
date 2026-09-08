@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HomeBoss Studio — design the intelligence of your home. Build a smart home system around your rooms, lifestyle and security needs.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="HomeBoss Studio — Design the intelligence of your home" />
+    <meta property="og:description" content="Create a HomeBoss system designed specifically around your rooms, lifestyle, security needs, and personality." />
+    <meta property="og:image" content="https://myhomeboss.com/homeboss-preview.png" />
+    <meta property="og:url" content="https://myhomeboss.com/studio" />
+    <meta property="og:type" content="website" />
+
+    <title>HomeBoss Studio — Design Your Intelligent Home</title>
+    <link rel="icon" href="homeboss.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="studio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation (shared with the rest of HomeBoss) -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="homeboss.png" alt="HomeBoss Logo" class="logo-icon">
+                <span class="brand-name">HomeBoss</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="studio.html" class="active">Studio</a></li>
+                <li><a href="index.html#waitlist" class="btn-nav">Join Waitlist</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Studio -->
+    <main class="st-studio">
+        <div class="container">
+            <span id="studioTop"></span>
+
+            <!-- Intro -->
+            <header class="st-head">
+                <span class="st-eyebrow">HomeBoss Studio</span>
+                <h1>Design the <span class="gradient-text">intelligence</span> of your home.</h1>
+                <p>Every home is unique. Create a HomeBoss system designed specifically around your
+                   rooms, lifestyle, security needs, and personality.</p>
+            </header>
+
+            <!-- Progress (desktop) -->
+            <div class="st-progress" aria-hidden="false">
+                <div class="st-rail"><div class="st-rail-fill" id="stRailFill"></div></div>
+                <ul class="st-nodes" id="stNodes"></ul>
+            </div>
+            <!-- Progress (mobile) -->
+            <div class="st-progress-mobile">
+                <div class="st-mtrack"><div class="st-mfill" id="stMFill"></div></div>
+                <div class="st-mmeta"><strong id="stMStep">Step 1 / 7</strong><span id="stMLabel">Home Type</span></div>
+            </div>
+
+            <!-- Panels -->
+            <div class="st-stage">
+
+                <!-- STEP 1 -->
+                <section class="st-panel is-active" data-step="1">
+                    <div class="st-panel-head">
+                        <h2>What are we making intelligent?</h2>
+                        <p>Choose your space. HomeBoss adapts its intelligence to the way it will be used.</p>
+                    </div>
+                    <div class="st-grid cols-5" id="stStep1Grid"></div>
+                </section>
+
+                <!-- STEP 2 -->
+                <section class="st-panel" data-step="2">
+                    <div class="st-panel-head">
+                        <h2>Build your floor plan</h2>
+                        <p>Add the rooms in your home. Rename any room, and remove ones you don't need.</p>
+                    </div>
+                    <div class="st-builder">
+                        <aside class="st-palette">
+                            <h4>ADD A ROOM</h4>
+                            <div class="st-chips-wrap" id="stPalette"></div>
+                        </aside>
+                        <div class="st-floor" id="stFloor"></div>
+                    </div>
+                </section>
+
+                <!-- STEP 3 -->
+                <section class="st-panel" data-step="3">
+                    <div class="st-panel-head">
+                        <h2>Fit out your smart devices</h2>
+                        <p>Pick a room, then dial in exactly how much intelligence it should have.</p>
+                    </div>
+                    <div class="st-roomtabs" id="stRoomTabs"></div>
+                    <div id="stDeviceBody"></div>
+                </section>
+
+                <!-- STEP 4 -->
+                <section class="st-panel" data-step="4">
+                    <div class="st-panel-head">
+                        <h2>Choose your protection style</h2>
+                        <p>Security should match your life — not the other way around.</p>
+                    </div>
+                    <div class="st-grid cols-3" id="stStep4Grid"></div>
+                </section>
+
+                <!-- STEP 5 -->
+                <section class="st-panel" data-step="5">
+                    <div class="st-panel-head">
+                        <h2>Give your home a personality</h2>
+                        <p>This is how HomeBoss will speak to you every day. Choose the voice that feels like home.</p>
+                    </div>
+                    <div class="st-grid cols-4" id="stStep5Grid"></div>
+                </section>
+
+                <!-- STEP 6 -->
+                <section class="st-panel" data-step="6">
+                    <div class="st-panel-head">
+                        <h2>Tell us about your lifestyle</h2>
+                        <p>These final details let HomeBoss tune your blueprint to how you actually live.</p>
+                    </div>
+                    <div id="stStep6"></div>
+                </section>
+
+                <!-- STEP 7 -->
+                <section class="st-panel" data-step="7">
+                    <div class="st-panel-head">
+                        <h2>Your HomeBoss Blueprint</h2>
+                        <p>Designed entirely around you. This is what your intelligent home could become.</p>
+                    </div>
+                    <div class="st-blueprint" id="stBlueprint"></div>
+                </section>
+            </div>
+
+            <!-- Nav actions -->
+            <div class="st-actions">
+                <button type="button" class="st-ghost" id="stBack" disabled>← Back</button>
+                <button type="button" class="btn btn-primary" id="stNext">Continue →</button>
+            </div>
+            <p class="st-hint" id="stHint"></p>
+        </div>
+    </main>
+
+    <div class="st-toast" id="stToast" role="status" aria-live="polite"></div>
+
+    <!-- Footer (shared with the rest of HomeBoss) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="homeboss.png" alt="HomeBoss Logo" class="logo-icon">
+                        <span class="brand-name">HomeBoss</span>
+                    </div>
+                    <p>Empowering smarter, safer homes through AI-driven automation.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="index.html#features">Features</a></li>
+                            <li><a href="studio.html">Studio</a></li>
+                            <li><a href="index.html#waitlist">Waitlist</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="index.html#investors">Investors</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/osborn-nartey-ojerh-tettey-4680a1366" aria-label="LinkedIn">📎</a>
+                            <a href="https://github.com/OptimusO7" aria-label="Github">🧑‍💻</a>
+                            <a href="https://wa.me/233206782232" aria-label="WhatsApp">💬</a>
+                            <a href="mailto:osbornnartey7@gmail.com" aria-label="Email">📧</a>
+                            <a href="https://portfolio-osbornnartey.vercel.app" aria-label="portfolio">👔</a>
+                            <a href="tel:+233206782232" aria-label="Phone">📞</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Optimus Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="studio.js"></script>
+</body>
+</html>
