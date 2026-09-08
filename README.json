@@ -1,0 +1,166 @@
+🏠 HomeBoss Website
+A futuristic smart home automation system website built for Optimus Technologies
+
+📋 Project Overview
+HomeBoss is an intelligent home automation system that enables users to control lighting, doors, and security from anywhere using a mobile app. This website serves as the primary landing page to attract investors and customers.
+
+✨ Key Features
+Modern, Futuristic Design: Electric blue theme with smooth animations
+Fully Responsive: Optimized for desktop, tablet, and mobile devices
+Interactive Elements: Scroll animations, hover effects, and dynamic counter
+Waitlist Integration: Formspree integration for customer and investor sign-ups
+SEO Optimized: Semantic HTML and meta tags
+Fast Performance: Optimized assets and lazy loading
+🛠️ Tech Stack
+Frontend: HTML5, CSS3, JavaScript (Vanilla)
+Backend: Node.js + Express
+Fonts: Google Fonts (Orbitron, Poppins)
+Forms: Formspree
+Deployment: Vercel-ready
+📁 Project Structure
+/homeboss
+├── public/
+│   ├── index.html          # Main landing page
+│   ├── about.html          # About Optimus Technologies
+│   ├── styles.css          # All styling
+│   └── script.js           # Interactive JavaScript
+├── server.js               # Express server
+├── package.json            # Dependencies
+├── README.md               # This file
+└── vercel.json            # Vercel configuration (optional)
+🚀 Getting Started
+Prerequisites
+Node.js (v14 or higher)
+npm or yarn
+Installation
+Clone or download the project
+bash
+   cd homeboss
+Install dependencies
+bash
+   npm install
+Run locally
+bash
+   npm start
+Open in browser
+   http://localhost:3000
+Development Mode
+For auto-reload during development:
+
+bash
+npm run dev
+📧 Formspree Configuration
+Current Setup
+The website uses placeholder Formspree endpoints:
+
+Customer Waitlist: https://formspree.io/f/customer_waitlist
+Investor Waitlist: https://formspree.io/f/investor_waitlist
+How to Update Formspree Endpoints
+Create a Formspree account at formspree.io
+Create two forms:
+One for customers
+One for investors
+Get your form IDs (they look like: xyzabc123)
+Update in public/index.html: Find the form element (around line 170):
+html
+   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="waitlist-form" id="waitlist-form">
+Update the JavaScript routing in public/script.js (around line 95):
+javascript
+   if (role === 'investor') {
+       form.action = 'https://formspree.io/f/YOUR_INVESTOR_FORM_ID';
+   } else {
+       form.action = 'https://formspree.io/f/YOUR_CUSTOMER_FORM_ID';
+   }
+🌐 Deploying to Vercel
+Option 1: Using Vercel CLI
+Install Vercel CLI
+bash
+   npm install -g vercel
+Login to Vercel
+bash
+   vercel login
+Deploy
+bash
+   vercel
+Follow the prompts and your site will be live!
+Option 2: Using Vercel Dashboard
+Go to vercel.com
+Click "New Project"
+Import your GitHub repository (or upload files)
+Vercel will auto-detect the configuration
+Click "Deploy"
+Environment Variables (Optional)
+If you need environment variables:
+
+Go to your Vercel project settings
+Navigate to "Environment Variables"
+Add any required variables
+🎨 Customization Guide
+Change Colors
+Edit public/styles.css (around line 15):
+
+css
+:root {
+    --primary-blue: #007BFF;    /* Main brand color */
+    --silver: #C0C0C0;          /* Secondary text */
+    --dark-navy: #0A0A0A;       /* Background */
+    --white: #FFFFFF;           /* Text color */
+}
+Update Content
+Hero Text: Edit public/index.html (around line 40)
+Features: Edit public/index.html (around line 65)
+About Page: Edit public/about.html
+Add Social Links
+Update footer in both HTML files:
+
+html
+<a href="YOUR_LINKEDIN_URL" aria-label="LinkedIn">📎</a>
+<a href="YOUR_INSTAGRAM_URL" aria-label="Instagram">📷</a>
+<a href="YOUR_TWITTER_URL" aria-label="Twitter">🐦</a>
+📊 Analytics
+The website includes a simple session-based visitor counter. For production analytics:
+
+Google Analytics: Add tracking code to HTML files
+Plausible/Fathom: For privacy-focused analytics
+Custom Backend: Use the /api/analytics endpoint
+🔧 Troubleshooting
+Forms not submitting?
+Check Formspree endpoints are correct
+Ensure internet connection is active
+Check browser console for errors
+Styles not loading?
+Verify file paths in HTML
+Check that CSS file is in public/ folder
+Clear browser cache
+Server won't start?
+Ensure Node.js is installed (node --version)
+Run npm install again
+Check if port 3000 is available
+📝 TODO / Future Enhancements
+ Add actual demo video
+ Implement real analytics dashboard
+ Add blog section for content marketing
+ Create investor pitch deck download
+ Integrate with CRM system
+ Add live chat support
+ Multi-language support
+👨‍💻 About
+Created by: Optimus Technologies
+Founder: Osborn Nartey
+Project: HomeBoss Smart Home System
+Year: 2025
+
+📄 License
+Copyright © 2025 Optimus Technologies. All rights reserved.
+
+💬 Support
+For questions or support:
+
+Email: contact@optimustech.com (update with real email)
+Website: Join our waitlist
+🙏 Acknowledgments
+Google Fonts for typography
+Formspree for form handling
+Vercel for hosting
+Built with ❤️ for a smarter future
+

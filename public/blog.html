@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Thoughts on smart homes, AI, IoT and the future of living, by the HomeBoss team." />
+<title>Tech Insights — HomeBoss Blog</title>
+<link rel="icon" href="homeboss.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="pages.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<meta id="meta-title" property="og:site_name" content="HomeBoss Blog" />
+<meta property="og:type" content="article" />
+<meta id="og-url" property="og:url" content="https://www.myhomeboss.com/blog.html" />
+<meta id="og-title" property="og:title" content="Tech Insights — HomeBoss Blog" />
+<meta id="og-desc" property="og:description" content="Smart homes, AI, IoT and the future of living." />
+<meta id="og-image" property="og:image" content="https://www.myhomeboss.com/homeboss-preview.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta id="tw-title" name="twitter:title" content="Tech Insights — HomeBoss Blog" />
+<meta id="tw-desc" name="twitter:description" content="Smart homes, AI, IoT and the future of living." />
+<meta id="tw-image" name="twitter:image" content="https://www.myhomeboss.com/homeboss-preview.png" />
+<style>
+/* ---- Blog-only styles ---- */
+.blog-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:44px}
+.blog-search{position:relative;flex:1;min-width:240px;max-width:360px}
+.blog-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted);pointer-events:none}
+.blog-search input{width:100%;border:1px solid var(--border);background:rgba(6,6,10,.6);color:var(--white);padding:12px 16px 12px 40px;outline:none;transition:border .25s,background .25s}
+.blog-search input:focus{border-color:rgba(79,195,247,.5);background:rgba(6,6,10,.9)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.blog-filter{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);background:transparent;padding:11px 18px;cursor:none;transition:color .25s,border-color .25s,background .25s}
+.blog-filter:hover,.blog-filter.active{border-color:var(--accent);color:var(--white);background:rgba(79,195,247,.08)}
+.post-grid{display:grid;gap:22px;perspective:1600px}
+.post{position:relative;display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--border);background:#090912;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.4);transform-style:preserve-3d}
+.post.is-featured{min-height:520px}
+.post-media{position:relative;overflow:hidden;background:#05060a;min-height:320px}
+.post-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(1.05);transition:transform 1.2s var(--ease-out)}
+.post:hover .post-media img{transform:scale(1.05)}
+.post-media::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,#090912 100%),linear-gradient(to top,rgba(9,9,18,.6),transparent 40%)}
+.post-tag{position:absolute;left:24px;top:24px;z-index:3;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(79,195,247,.36);background:rgba(6,6,10,.55);backdrop-filter:blur(10px);padding:9px 14px}
+.post-number{position:absolute;right:20px;bottom:6px;z-index:3;font-family:var(--serif);font-size:clamp(3.4rem,7vw,6.4rem);font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14);pointer-events:none}
+.post-body{padding:44px 44px 36px;display:flex;flex-direction:column;gap:18px;position:relative;z-index:2}
+.post-meta{display:flex;flex-wrap:wrap;gap:18px;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.post-title{font-family:var(--serif);font-size:clamp(1.5rem,2.4vw,2.2rem);font-weight:800;letter-spacing:-.035em;line-height:1.02;text-wrap:balance}
+.post-title a{transition:color .25s}.post-title a:hover{color:var(--accent)}
+.post-excerpt{color:var(--muted);font-size:.95rem;line-height:1.75;flex:1;max-width:520px}
+.post-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding-top:18px;border-top:1px solid var(--border)}
+.no-results{display:none;border:1px dashed var(--border);padding:48px 24px;text-align:center;color:var(--muted);line-height:1.7}
+.no-results b{display:block;font-family:var(--serif);color:var(--white);font-size:1.2rem;margin-bottom:6px;letter-spacing:-.02em}
+.coming{margin-top:22px;border:1px solid var(--border);background:rgba(255,255,255,.03);padding:32px 36px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+.coming h3{font-family:var(--serif);font-size:1.25rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.coming p{color:var(--muted);font-size:.92rem;line-height:1.7;max-width:560px}
+.reel-wrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:64px;align-items:center}
+.reel-wrap .title{font-size:clamp(2rem,3.2vw,3.2rem)}
+.reel{position:relative;aspect-ratio:16/10;border:1px solid rgba(79,195,247,.16);background:#000;overflow:hidden;box-shadow:0 45px 120px rgba(0,0,0,.45);transform-style:preserve-3d}
+.reel video{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.85)}
+.reel-ctrl{position:absolute;left:22px;bottom:22px;z-index:3;display:flex;align-items:center;gap:12px}
+.reel-btn{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(6,6,10,.55);backdrop-filter:blur(10px);color:var(--white);display:grid;place-items:center;transition:background .3s,border-color .3s,color .3s;cursor:none}
+.reel-btn:hover{background:var(--accent);border-color:var(--accent);color:#000}
+.reel-btn svg{width:18px;height:18px}
+.reel-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);background:rgba(6,6,10,.55);backdrop-filter:blur(10px);border:1px solid var(--border);padding:10px 14px}
+.reel-progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.1);z-index:3}
+.reel-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.news-band{position:relative;border:1px solid var(--border);background:linear-gradient(135deg,rgba(79,195,247,.08),rgba(255,255,255,.035));padding:64px 56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;overflow:hidden;box-shadow:0 50px 120px rgba(0,0,0,.26)}
+.news-band::before{content:'NEWS';position:absolute;right:-10px;bottom:-24px;font-family:var(--serif);font-size:clamp(4rem,12vw,10rem);font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.045);pointer-events:none}
+.news-form{display:grid;gap:12px;position:relative;z-index:2}
+.news-form input{width:100%;border:1px solid var(--border);background:rgba(6,6,10,.6);color:var(--white);padding:15px 16px;outline:none;transition:border .25s}
+.news-form input:focus{border-color:rgba(79,195,247,.5)}
+.news-form .btn-primary{justify-content:center}
+.news-note{font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+@media(max-width:1000px){
+  .post{grid-template-columns:1fr}
+  .post.is-featured{min-height:auto}
+  .post-media{min-height:260px}
+  .post-media::after{background:linear-gradient(to top,#090912 0%,rgba(9,9,18,.2) 60%,transparent 100%)}
+  .post-body{padding:28px 24px}
+  .coming{grid-template-columns:1fr;padding:26px}
+  .reel-wrap,.news-band{grid-template-columns:1fr;gap:32px}
+  .news-band{padding:36px 24px}
+}
+</style>
+</head>
+<body>
+
+<div id="cur-dot"></div><div id="cur-ring"></div><div id="progress-bar"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo interactive"><div class="nav-logo-mark"><img src="homeboss-white.png" alt="HomeBoss Logo"></div>HomeBoss</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="prototype.html">Launch</a></li>
+  </ul>
+  <a href="index.html#waitlist" class="nav-cta interactive">Join Waitlist</a>
+  <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="ph" id="top">
+  <div class="ph-fallback"></div>
+  <div class="ph-media"><img src="feature-lighting.jpg" alt="A bedroom lit by a HomeBoss smart ceiling light" id="heroImg"></div>
+  <div class="ph-overlay"></div>
+  <div class="ph-bgtext" id="bgText">INSIGHTS</div>
+  <div class="ph-content">
+    <div class="ph-eyebrow" id="heroEye">Tech Insights, the HomeBoss blog</div>
+    <h1 class="ph-h1" id="heroH1">Notes from<br><span class="italic">the build.</span></h1>
+    <div class="ph-meta" id="heroMeta">
+      <p class="ph-desc">Thoughts on smart homes, AI, IoT and the future of living, written by the people building HomeBoss. Product updates, decisions and lessons as we go.</p>
+      <div class="ph-cta">
+        <a href="#posts" class="btn-primary interactive">Read the latest <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+        <a href="#subscribe" class="btn-ghost interactive">Get new posts by email</a>
+      </div>
+    </div>
+  </div>
+  <div class="ph-card tilt" data-tilt="10" id="heroCard">
+    <div class="status-top"><span>On the blog</span><span class="status-dot"></span></div>
+    <div class="status-grid">
+      <div class="status-cell" data-z="24"><b id="postCount">1</b><span>Published</span></div>
+      <div class="status-cell" data-z="24"><b>5</b><span>Topics</span></div>
+      <div class="status-cell" data-z="24"><b>Medium</b><span>Long reads</span></div>
+      <div class="status-cell" data-z="24"><b>Email</b><span>New post alerts</span></div>
+    </div>
+    <i class="tilt-glare"></i>
+  </div>
+  <div class="ph-scrollcue"><i></i>Scroll</div>
+</section>
+
+<!-- POSTS -->
+<section class="sec" id="posts">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="section-tag">Latest</div>
+        <h2 class="title">From the<br><em>HomeBoss team.</em></h2>
+      </div>
+      <p class="sec-note">Search by keyword or filter by topic.</p>
+    </div>
+
+    <div class="blog-tools" id="filter-tags">
+      <div class="blog-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="text" id="blog-search" placeholder="Search articles" autocomplete="off" aria-label="Search articles">
+      </div>
+      <div class="filters">
+        <button class="blog-filter active" data-filter="all">All</button>
+        <button class="blog-filter" data-filter="smart-home">Smart Home</button>
+        <button class="blog-filter" data-filter="ai">AI &amp; ML</button>
+        <button class="blog-filter" data-filter="iot">IoT</button>
+        <button class="blog-filter" data-filter="security">Security</button>
+        <button class="blog-filter" data-filter="startup">Startup</button>
+      </div>
+    </div>
+
+    <div class="post-grid" id="blog-grid">
+      <article class="post is-featured blog-card tilt" data-tilt="4" id="post-founding-story" data-category="startup"
+        data-title="Why We Built HomeBoss: The Founding Story of HomeBoss"
+        data-desc="Every startup begins with a frustration. Ours began with a locked door, a dead phone, and a very long night."
+        data-image="https://www.myhomeboss.com/homeboss.png">
+        <div class="post-media">
+          <img src="product_scene.png" alt="The HomeBoss hub in a smart home scene" loading="lazy">
+          <span class="post-tag" data-z="36">Startup</span>
+          <span class="post-number" data-z="20">01</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>March 2026</span><span>6 min read</span><span>Osborn Nartey</span></div>
+          <h2 class="post-title" data-z="24"><a href="https://medium.com/@osbornnartey7/why-we-built-homeboss-the-founding-story-of-homeboss-0bba302cf288" target="_blank" rel="noopener">Why we built HomeBoss: the founding story</a></h2>
+          <p class="post-excerpt">Every startup begins with a frustration. Ours began with a locked door, a dead phone and a very long night. This is the honest story of how HomeBoss went from a whiteboard sketch to a real product.</p>
+          <div class="post-actions">
+            <a href="https://medium.com/@osbornnartey7/why-we-built-homeboss-the-founding-story-of-homeboss-0bba302cf288" target="_blank" rel="noopener" class="btn-primary interactive">Read on Medium <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+            <button class="icon-btn share-btn interactive" type="button" title="Copy link to this post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <span>Copy link</span>
+            </button>
+          </div>
+        </div>
+        <i class="tilt-glare"></i>
+      </article>
+
+      <article class="post is-featured blog-card tilt" data-tilt="4" id="post-founding-story" data-category="startup"
+        data-title="Why We Built HomeBoss: The Founding Story of HomeBoss"
+        data-desc="Every startup begins with a frustration. Ours began with a locked door, a dead phone, and a very long night."
+        data-image="https://www.myhomeboss.com/homeboss.png">
+        <div class="post-media">
+          <img src="team.png" alt="The HomeBoss hub in a smart home scene" loading="lazy">
+          <span class="post-tag" data-z="36">Startup</span>
+          <span class="post-number" data-z="20">02</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>August 2026</span><span>6 min read</span><span>Sheila Hanson</span></div>
+          <h2 class="post-title" data-z="24"><a href="https://medium.com/@osbornnartey7/why-we-built-homeboss-the-founding-story-of-homeboss-0bba302cf288" target="_blank" rel="noopener">From Blueprints to Smart Homes :My First Week at HomeBoss</a></h2>
+          <p class="post-excerpt">I never expected my background in architecture to lead me into a tech startup, but my first week at HomeBoss proved that innovation happens when different disciplines come together</p>
+          <div class="post-actions">
+            <a href="https://medium.com/@sheilahanson2559/from-blueprints-to-smart-homes-my-first-week-at-homeboss-f8bc2abb32d4" target="_blank" rel="noopener" class="btn-primary interactive">Read on Medium <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+            <button class="icon-btn share-btn interactive" type="button" title="Copy link to this post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <span>Copy link</span>
+            </button>
+          </div>
+        </div>
+        <i class="tilt-glare"></i>
+      </article>
+
+      <div class="no-results" id="no-results">
+        <b>No articles match that yet</b>
+        Try a different keyword or clear the filter. New posts land here as we publish them.
+      </div>
+    </div>
+
+    <div class="coming">
+      <div>
+        <h3>More on the way</h3>
+        <p>We publish as we build. Upcoming pieces cover the prototype, the mobile app and how HomeBoss handles security. Subscribe below and we'll email you when the next one is live.</p>
+      </div>
+      <a href="#subscribe" class="btn-ghost interactive">Subscribe for updates</a>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO REEL -->
+<section class="sec alt" id="reel">
+  <div class="container reel-wrap">
+    <div>
+      <div class="section-tag">In motion</div>
+      <h2 class="title">The hub,<br><em>up close.</em></h2>
+      <p class="copy">A short reel of the HomeBoss hub, the same hardware we'll put on stage at the prototype launch. Watch the full demo for the app and features working together.</p>
+      <a href="https://www.youtube.com/watch?v=NHk4eANZcnM" target="_blank" rel="noopener noreferrer" class="btn-ghost interactive">Watch the full demo on YouTube</a>
+    </div>
+    <div class="tilt-wrap">
+      <div class="reel tilt" data-tilt="7">
+        <video id="reelVideo" muted loop playsinline preload="metadata" poster="home_boss_1.png"><source src="hero.mp4" type="video/mp4"></video>
+        <div class="reel-ctrl" data-z="30">
+          <button class="reel-btn" id="reelToggle" type="button" aria-label="Play video">
+            <svg id="reelPlayIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="reelPauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <span class="reel-label">HomeBoss hub reel</span>
+        </div>
+        <div class="reel-progress"><i id="reelProgress"></i></div>
+        <i class="tilt-glare"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="sec" id="subscribe">
+  <div class="container">
+    <div class="news-band">
+      <div>
+        <div class="section-tag">Stay in the loop</div>
+        <h2 class="title" style="max-width:520px">Get new posts<br><em>in your inbox.</em></h2>
+        <p class="copy">One email whenever we publish. No spam, and you can leave whenever you like.</p>
+      </div>
+      <form class="news-form" action="https://formspree.io/f/manawern" method="POST" id="newsForm">
+        <label class="sr-only" for="newsEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+        <input type="email" id="newsEmail" name="email" placeholder="you@example.com" required>
+        <button type="submit" class="btn-primary interactive">Subscribe</button>
+        <p class="news-note" id="newsNote">We only email when there's a new article.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><div class="footer-logo">HomeBoss</div><p class="footer-desc">Empowering smarter, safer homes through AI-driven automation.</p></div>
+  <div class="footer-col"><h4>Product</h4><a href="index.html#features">Features</a><a href="index.html#demo">Demo</a><a href="studio.html">Studio</a><a href="prototype.html">Prototype launch</a></div>
+  <div class="footer-col"><h4>Company</h4><a href="about.html">About us</a><a href="index.html#investors">Investors</a><a href="blog.html">Blog</a><a href="index.html#waitlist">Waitlist</a></div>
+  <div class="footer-col"><h4>Connect</h4>
+    <div class="social">
+      <a href="https://www.linkedin.com/company/myhomeboss" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://github.com/OptimusO7" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+      <a href="https://wa.me/233537182114" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      <a href="mailto:optimustechnologies00@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></a>
+      <a href="https://portfolio-osbornnartey.vercel.app" target="_blank" rel="noopener" aria-label="Portfolio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+      <a href="tel:+233537182114" aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Optimus Technologies. All rights reserved.</div>
+</footer>
+
+<script src="pages.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Hero entrance */
+gsap.timeline({ delay: .2 })
+  .from("#heroEye", { opacity: 0, y: 18, duration: .9, ease: "power2.out" })
+  .from("#heroH1", { opacity: 0, y: 50, skewY: 2, duration: 1.25, ease: "power3.out" }, "-=.45")
+  .from("#heroMeta", { opacity: 0, y: 24, duration: 1, ease: "power2.out" }, "-=.7")
+  .from("#heroCard", { opacity: 0, y: 24, duration: .9, ease: "power3.out" }, "-=.75");
+if (!rm) {
+  gsap.to("#heroImg", { scale: 1.12, y: 40, scrollTrigger: { trigger: ".ph", start: "top top", end: "bottom top", scrub: 1.2 } });
+  gsap.to("#bgText", { x: -140, scrollTrigger: { trigger: ".ph", start: "top top", end: "bottom top", scrub: 1 } });
+  gsap.from("#post-founding-story", { scrollTrigger: { trigger: "#posts", start: "top 60%" }, opacity: 0, y: 60, rotateX: 10, transformOrigin: "center top", duration: 1.3, ease: "power3.out" });
+}
+
+/* ===== Post registry + social meta injection (kept from previous version) ===== */
+const POST_REGISTRY = {
+  "founding-story": {
+    title: "Why We Built HomeBoss: The Founding Story of Optimus Technologies",
+    desc:  "Every startup begins with a frustration. Ours began with a locked door, a dead phone, and a very long night.",
+    image: "https://www.myhomeboss.com/homeboss.png"
+  }
+};
+const BASE_URL = "https://www.myhomeboss.com/blog.html";
+function injectPostMeta(slug){
+  const post = POST_REGISTRY[slug]; if(!post) return;
+  const fullTitle = post.title + " – HomeBoss";
+  const url = BASE_URL + "#post-" + slug;
+  document.title = fullTitle;
+  const set=(id,attr,val)=>{const el=document.getElementById(id);if(el)el.setAttribute(attr,val)};
+  set("og-url","content",url);set("og-title","content",fullTitle);set("og-desc","content",post.desc);set("og-image","content",post.image);
+  set("tw-title","content",fullTitle);set("tw-desc","content",post.desc);set("tw-image","content",post.image);
+}
+function handleAnchor(){
+  const hash=window.location.hash; if(!hash||!hash.startsWith("#post-"))return;
+  const slug=hash.replace("#post-","");injectPostMeta(slug);
+  const card=document.getElementById("post-"+slug); if(!card)return;
+  setTimeout(()=>{card.scrollIntoView({behavior:"smooth",block:"center"});card.style.borderColor="var(--accent)";setTimeout(()=>card.style.borderColor="",3000)},300);
+}
+window.addEventListener("load",handleAnchor);
+window.addEventListener("hashchange",handleAnchor);
+
+/* Share buttons copy the post anchor URL */
+document.querySelectorAll(".share-btn").forEach(btn=>{
+  const card=btn.closest(".blog-card");
+  btn.addEventListener("click",()=>HBCopy(BASE_URL+"#"+card.id,btn,"Link copied"));
+});
+
+/* Search & filter */
+const searchInput=document.getElementById("blog-search");
+const filterBtns=document.querySelectorAll(".blog-filter");
+const cards=document.querySelectorAll(".blog-card");
+const noResults=document.getElementById("no-results");
+document.getElementById("postCount").textContent=cards.length;
+let activeFilter="all",searchQuery="";
+function applyFilters(){
+  let visible=0;
+  cards.forEach(card=>{
+    const ok=(activeFilter==="all"||card.dataset.category===activeFilter)&&(searchQuery===""||card.innerText.toLowerCase().includes(searchQuery));
+    card.style.display=ok?"":"none";if(ok)visible++;
+  });
+  noResults.style.display=visible===0?"block":"none";
+}
+searchInput.addEventListener("input",e=>{searchQuery=e.target.value.trim().toLowerCase();applyFilters()});
+filterBtns.forEach(btn=>btn.addEventListener("click",()=>{
+  filterBtns.forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+  activeFilter=btn.dataset.filter;applyFilters();
+}));
+
+/* Native video reel: play/pause + progress, autoplays when scrolled into view */
+(function(){
+  const v=document.getElementById("reelVideo"),btn=document.getElementById("reelToggle");
+  const pi=document.getElementById("reelPlayIcon"),pa=document.getElementById("reelPauseIcon"),bar=document.getElementById("reelProgress");
+  if(!v) return;
+  const sync=()=>{const playing=!v.paused;pi.style.display=playing?"none":"";pa.style.display=playing?"":"none";btn.setAttribute("aria-label",playing?"Pause video":"Play video")};
+  btn.addEventListener("click",()=>{v.paused?v.play():v.pause()});
+  v.addEventListener("play",sync);v.addEventListener("pause",sync);
+  v.addEventListener("timeupdate",()=>{if(v.duration)bar.style.width=(v.currentTime/v.duration*100)+"%"});
+  if("IntersectionObserver" in window && !rm){
+    new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){v.play().catch(()=>{})}else{v.pause()}}),{threshold:.45}).observe(v);
+  }
+})();
+
+/* Newsletter: submit via fetch so the page doesn't navigate away */
+(function(){
+  const f=document.getElementById("newsForm"),note=document.getElementById("newsNote");
+  f.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const btn=f.querySelector("button");btn.disabled=true;btn.textContent="Subscribing";
+    try{
+      const r=await fetch(f.action,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});
+      if(r.ok){f.reset();note.textContent="Subscribed. We'll email you when the next post is live.";note.style.color="var(--accent2)"}
+      else{note.textContent="That didn't go through. Check the address and try again.";note.style.color="var(--danger)"}
+    }catch(err){note.textContent="No connection. Check your internet and try again.";note.style.color="var(--danger)"}
+    btn.disabled=false;btn.textContent="Subscribe";
+  });
+})();
+</script>
+</body>
+</html>
