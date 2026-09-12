@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Register for the HomeBoss prototype launch on August 8, 2026. Join as an investor, customer, or spectator." />
+<meta property="og:title" content="HomeBoss Prototype Launch — August 8, 2026" />
+<meta property="og:description" content="Be in the room when the HomeBoss prototype goes live. Register as an investor, customer or spectator." />
+<meta property="og:image" content="https://myhomeboss.com/homeboss-preview.png" />
+<meta property="og:url" content="https://myhomeboss.com/prototype" />
+<meta property="og:type" content="website" />
+<title>HomeBoss — Prototype Launch Registration</title>
+<link rel="icon" href="homeboss.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="pages.css">
+<link rel="stylesheet" href="/vendor/intl-tel-input/css/intlTelInput.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* ---- Launch-only styles ---- */
+.launch{position:relative;display:grid;grid-template-columns:1.1fr .9fr;min-height:100vh;background:var(--bg)}
+.stage{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:150px 56px 72px;min-height:100vh}
+.stage-media{position:absolute;inset:0;z-index:0}
+.stage-media video{width:100%;height:100%;object-fit:cover;opacity:.6;filter:saturate(.6) brightness(.6)}
+.stage-fallback{position:absolute;inset:0;background:radial-gradient(ellipse 130% 90% at 40% 50%,#131328 0%,#0a0a14 45%,var(--bg) 100%)}
+.stage-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(6,6,10,.4) 0%,rgba(6,6,10,.1) 40%,rgba(6,6,10,.8) 80%,var(--bg) 100%),linear-gradient(to left,var(--bg) 0%,transparent 30%)}
+.stage-inner{position:relative;z-index:5;max-width:640px}
+.stage .ph-h1{font-size:clamp(2.6rem,5.2vw,5rem);margin-bottom:24px}
+.stage .ph-eyebrow{display:flex}
+.stage-date{display:inline-flex;align-items:center;gap:14px;font-family:var(--serif);font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(79,195,247,.36);background:rgba(79,195,247,.08);padding:12px 18px;margin-bottom:26px}
+.stage-date i{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 14px var(--accent2);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.stage-desc{color:var(--muted);font-size:.98rem;line-height:1.75;max-width:520px;margin-bottom:36px}
+
+/* Flip-clock countdown */
+.countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:520px;perspective:900px}
+.cd-unit{text-align:center}
+.cd-card{position:relative;border:1px solid var(--border);background:rgba(13,13,20,.72);backdrop-filter:blur(14px);padding:20px 8px 16px;transform-style:preserve-3d;box-shadow:0 30px 70px rgba(0,0,0,.4);overflow:hidden}
+.cd-card::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,.08)}
+.cd-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.05),transparent 50%,rgba(0,0,0,.25))}
+.cd-card.flip{animation:cdFlip .6s var(--ease-out)}
+@keyframes cdFlip{0%{transform:rotateX(-90deg);opacity:.3}60%{transform:rotateX(12deg)}100%{transform:none;opacity:1}}
+.cd-val{display:block;font-family:var(--serif);font-size:clamp(1.9rem,3.6vw,3rem);font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--white);font-variant-numeric:tabular-nums}
+.cd-unit small{display:block;margin-top:10px;font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.launched{display:none;border:1px solid rgba(183,255,106,.35);background:rgba(183,255,106,.06);padding:22px 24px;max-width:520px}
+.launched b{display:block;font-family:var(--serif);font-size:1.15rem;margin-bottom:6px;letter-spacing:-.02em}
+.launched p{color:var(--soft);font-size:.9rem;line-height:1.65}
+.is-launched .countdown{display:none}.is-launched .launched{display:block}
+
+/* Registration panel */
+.panel{position:relative;z-index:6;display:flex;align-items:center;padding:150px 56px 72px 32px}
+.panel-card{width:100%;max-width:520px;margin-left:auto;border:1px solid var(--border);background:rgba(255,255,255,.045);backdrop-filter:blur(18px);padding:38px;box-shadow:0 40px 100px rgba(0,0,0,.35);transform-style:preserve-3d}
+.panel-title{font-family:var(--serif);font-size:1.7rem;font-weight:800;letter-spacing:-.035em;line-height:1;margin-bottom:8px;text-transform:uppercase}
+.panel-sub{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:26px}
+.proto-form .form-group{margin-bottom:18px;display:grid;gap:8px}
+.proto-form .lbl{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.proto-form input[type=text],.proto-form input[type=tel],.proto-form input[type=email]{width:100%;border:1px solid var(--border);background:rgba(6,6,10,.6);color:var(--white);padding:15px 16px;outline:none;transition:border .25s,background .25s}
+.proto-form input:focus{border-color:rgba(79,195,247,.5);background:rgba(6,6,10,.9)}
+.field-hint{font-size:.72rem;color:var(--muted)}
+.role-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.role-option{cursor:none;position:relative}
+.role-option input{position:absolute;opacity:0;pointer-events:none}
+.role-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:10px;border:1px solid var(--border);background:rgba(255,255,255,.03);padding:16px 14px;min-height:118px;transition:border-color .25s,background .25s,transform .35s var(--ease-out),box-shadow .3s}
+.role-card svg{width:22px;height:22px;stroke-width:1.6;color:var(--muted);transition:color .25s}
+.role-name{font-family:var(--serif);font-size:.82rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.role-sub{font-size:.7rem;color:var(--muted);line-height:1.4}
+.role-option:hover .role-card{border-color:rgba(79,195,247,.4);transform:translateY(-3px)}
+.role-option input:checked + .role-card{border-color:var(--accent);background:rgba(79,195,247,.1);box-shadow:0 0 24px rgba(79,195,247,.14)}
+.role-option input:checked + .role-card svg{color:var(--accent)}
+.role-option input:focus-visible + .role-card{outline:2px solid var(--accent);outline-offset:2px}
+.form-error{color:var(--danger);font-size:.82rem;margin:4px 0 12px;min-height:1em;display:none}
+.proto-form .btn-primary{width:100%;justify-content:center}
+.consent{font-size:.72rem;color:var(--muted);line-height:1.5;margin-top:12px}
+.success-message{display:none;border:1px solid rgba(183,255,106,.3);background:rgba(183,255,106,.07);padding:30px 26px;text-align:center;color:var(--soft);line-height:1.6}
+.success-message .success-icon{width:56px;height:56px;border-radius:50%;background:rgba(183,255,106,.14);border:1px solid rgba(183,255,106,.4);display:grid;place-items:center;color:var(--accent2);margin:0 auto 16px}
+.success-message .success-icon svg{width:24px;height:24px;stroke-width:2}
+.success-message h3{font-family:var(--serif);font-size:1.4rem;font-weight:800;margin-bottom:8px;color:var(--white);letter-spacing:-.02em;text-transform:uppercase}
+/* intl-tel-input dark harmonisation */
+.iti{width:100%}
+.iti__country-list{background:#0d0d14;border:1px solid var(--border);color:var(--white)}
+.iti__country.iti__highlight{background:rgba(79,195,247,.14)}
+.iti__dial-code{color:var(--muted)}
+.iti__selected-flag{background:transparent}
+
+/* Launch day preview */
+.expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;perspective:1400px}
+.expect-grid .img-card{min-height:420px}
+.expect-grid .img-card small{display:block;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.who{border:1px solid var(--border);background:rgba(255,255,255,.035);padding:30px;transition:transform .35s var(--ease-out),border-color .3s,background .3s}
+.who:hover{transform:translateY(-8px);border-color:rgba(79,195,247,.32);background:rgba(79,195,247,.045)}
+.who svg{width:26px;height:26px;stroke-width:1.5;color:var(--accent);margin-bottom:18px}
+.who h3{font-family:var(--serif);font-size:1.2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.who p{color:var(--muted);font-size:.9rem;line-height:1.7}
+
+@media(max-width:1000px){
+  .launch{grid-template-columns:1fr;overflow-x:hidden}
+  .stage{min-height:auto;padding:130px 28px 56px}
+  .stage-overlay{background:linear-gradient(to bottom,rgba(6,6,10,.35) 0%,rgba(6,6,10,.1) 40%,rgba(6,6,10,.85) 85%,var(--bg) 100%)}
+  .panel{padding:0 24px 80px}
+  .stage .ph-h1{font-size:clamp(2rem,8.6vw,3.4rem)}
+  .panel-card{max-width:none;margin:0;padding:28px 22px}
+  .countdown{gap:8px}
+  .role-options{grid-template-columns:1fr}
+  .role-card{min-height:auto;flex-direction:row;align-items:center;gap:14px}
+  .expect-grid,.who-grid{grid-template-columns:1fr}
+  .expect-grid .img-card{min-height:300px}
+}
+</style>
+</head>
+<body>
+
+<div id="cur-dot"></div><div id="cur-ring"></div><div id="progress-bar"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo interactive"><div class="nav-logo-mark"><img src="homeboss-white.png" alt="HomeBoss Logo"></div>HomeBoss</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="prototype.html" class="active">Launch</a></li>
+  </ul>
+  <a href="#register" class="nav-cta interactive">Register</a>
+  <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- LAUNCH STAGE + REGISTRATION -->
+<section class="launch" id="launch">
+  <div class="stage">
+    <div class="stage-fallback"></div>
+    <div class="stage-media"><video autoplay muted loop playsinline poster="product_scene.png"><source src="hero.mp4" type="video/mp4"></video></div>
+    <div class="stage-overlay"></div>
+    <div class="stage-inner">
+      <div class="ph-eyebrow" id="heroEye">Prototype launch</div>
+      <div class="stage-date" id="stageDate"><i></i>August 8, 2026</div>
+      <h1 class="ph-h1" id="heroH1">HomeBoss<br><span class="italic">goes live.</span></h1>
+      <p class="stage-desc" id="heroDesc">Be in the room when we reveal the working HomeBoss prototype: the hub, the app and the automations, all running live. Register to secure your spot, whether you're backing us, buying in or just watching.</p>
+      <div id="countdownWrap">
+        <div class="countdown" id="countdown" aria-label="Time until launch" aria-live="polite">
+          <div class="cd-unit"><div class="cd-card"><span class="cd-val" id="cd-days">--</span></div><small>Days</small></div>
+          <div class="cd-unit"><div class="cd-card"><span class="cd-val" id="cd-hours">--</span></div><small>Hours</small></div>
+          <div class="cd-unit"><div class="cd-card"><span class="cd-val" id="cd-mins">--</span></div><small>Minutes</small></div>
+          <div class="cd-unit"><div class="cd-card"><span class="cd-val" id="cd-secs">--</span></div><small>Seconds</small></div>
+        </div>
+        <div class="launched" id="launched">
+          <b>Launch day has arrived</b>
+          <p>The HomeBoss prototype went live on August 8, 2026. Register below and we'll send you the recap, the demo footage and what happens next.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="register">
+    <div class="panel-card tilt" data-tilt="4" id="panelCard">
+      <h2 class="panel-title" data-z="18">Register for the launch</h2>
+      <p class="panel-sub">Takes less than a minute. You'll get a confirmation email straight away.</p>
+      <form id="proto-form" class="proto-form" novalidate>
+        <div class="form-group">
+          <label class="lbl" for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label class="lbl" for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Phone number" autocomplete="tel" required>
+          <small class="field-hint">Pick your country, then type your number.</small>
+        </div>
+        <div class="form-group">
+          <label class="lbl" for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <span class="lbl">I'm joining as</span>
+          <div class="role-options">
+            <label class="role-option interactive"><input type="radio" name="role" value="investor" required>
+              <span class="role-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+                <span class="role-name">Possible investor</span><span class="role-sub">Backing the company</span>
+              </span></label>
+            <label class="role-option interactive"><input type="radio" name="role" value="customer">
+              <span class="role-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+                <span class="role-name">Possible customer</span><span class="role-sub">Want HomeBoss at home</span>
+              </span></label>
+            <label class="role-option interactive"><input type="radio" name="role" value="spectator">
+              <span class="role-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span class="role-name">Spectator</span><span class="role-sub">Here to watch it unfold</span>
+              </span></label>
+          </div>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button type="submit" class="btn-primary interactive" id="proto-submit">Register for the launch</button>
+        <p class="consent">By registering you agree to receive emails about the HomeBoss prototype launch.</p>
+      </form>
+      <div id="proto-success" class="success-message">
+        <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>You're registered</h3>
+        <p>We've saved your spot for August 8, 2026. A confirmation email is on its way to your inbox.</p>
+      </div>
+      <i class="tilt-glare"></i>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="sec alt" id="expect">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="section-tag">On launch day</div>
+        <h2 class="title">What you'll<br><em>see live.</em></h2>
+      </div>
+      <p class="sec-note">The prototype demonstrates the six HomeBoss features on real hardware.</p>
+    </div>
+    <div class="expect-grid">
+      <div class="img-card tilt" data-tilt="8">
+        <img src="home_boss_1.png" alt="The HomeBoss hub" loading="lazy">
+        <div class="img-card-body" data-z="30"><small>The hub</small><h3>Hardware, switched on</h3><p>The HomeBoss hub controlling lighting, doors and security in real time.</p></div>
+        <i class="tilt-glare"></i>
+      </div>
+      <div class="img-card tilt" data-tilt="8">
+        <img src="feature-app.jpg" alt="The HomeBoss mobile app" loading="lazy">
+        <div class="img-card-body" data-z="30"><small>The app</small><h3>Control from your phone</h3><p>A walkthrough of the mobile app: schedules, alerts, remote unlock and energy tracking.</p></div>
+        <i class="tilt-glare"></i>
+      </div>
+      <div class="img-card tilt" data-tilt="8">
+        <img src="feature-ai.jpg" alt="AI automation" loading="lazy">
+        <div class="img-card-body" data-z="30"><small>The intelligence</small><h3>Automations that learn</h3><p>How HomeBoss picks up your routines and adapts the home around them.</p></div>
+        <i class="tilt-glare"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO'S IN THE ROOM -->
+<section class="sec" id="who">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="section-tag">Who it's for</div>
+        <h2 class="title">Three ways<br><em>to be there.</em></h2>
+      </div>
+      <p class="sec-note">Pick the one that fits when you register above.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        <h3>Investors</h3>
+        <p>See the product, the market position and the roadmap first-hand, and talk to the founders about the round.</p>
+      </div>
+      <div class="who">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+        <h3>Customers</h3>
+        <p>Get hands-on with the prototype, ask about pricing and installation, and move to the front of the waitlist.</p>
+      </div>
+      <div class="who">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Spectators</h3>
+        <p>Curious about smart homes or following the startup? Watch the reveal and see how it all works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="finale">
+  <div class="finale-glow"></div><div class="finale-rule"></div>
+  <div class="finale-tag">Secure your spot</div>
+  <h2 class="finale-h2">Be in the room<span class="line2">when it goes live.</span></h2>
+  <p class="finale-sub">Registration is free and takes less than a minute.</p>
+  <div class="finale-btns"><a href="#register" class="btn-primary interactive">Register now</a><a href="about.html" class="btn-ghost interactive">Meet the team</a></div>
+</section>
+
+<footer>
+  <div><div class="footer-logo">HomeBoss</div><p class="footer-desc">Empowering smarter, safer homes through AI-driven automation.</p></div>
+  <div class="footer-col"><h4>Product</h4><a href="index.html#features">Features</a><a href="index.html#demo">Demo</a><a href="studio.html">Studio</a><a href="prototype.html">Prototype launch</a></div>
+  <div class="footer-col"><h4>Company</h4><a href="about.html">About us</a><a href="index.html#investors">Investors</a><a href="blog.html">Blog</a><a href="index.html#waitlist">Waitlist</a></div>
+  <div class="footer-col"><h4>Connect</h4>
+    <div class="social">
+      <a href="https://linkedin.com/in/osborn-nartey-ojerh-tettey-4680a1366" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://github.com/OptimusO7" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+      <a href="https://wa.me/233206782232" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      <a href="mailto:osbornnartey7@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></a>
+      <a href="https://portfolio-osbornnartey.vercel.app" target="_blank" rel="noopener" aria-label="Portfolio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+      <a href="tel:+233206782232" aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Optimus Technologies. All rights reserved.</div>
+</footer>
+
+<script src="/vendor/intl-tel-input/js/intlTelInput.min.js"></script>
+<script src="pages.js"></script>
+<script src="prototype.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+gsap.timeline({ delay: .2 })
+  .from("#heroEye", { opacity: 0, y: 18, duration: .8, ease: "power2.out" })
+  .from("#stageDate", { opacity: 0, y: 14, duration: .7, ease: "power2.out" }, "-=.4")
+  .from("#heroH1", { opacity: 0, y: 50, skewY: 2, duration: 1.2, ease: "power3.out" }, "-=.4")
+  .from("#heroDesc", { opacity: 0, y: 20, duration: .9, ease: "power2.out" }, "-=.7")
+  .from(".cd-unit", { opacity: 0, y: 24, rotateX: -40, transformOrigin: "top center", stagger: .1, duration: .9, ease: "power3.out" }, "-=.6")
+  .from("#panelCard", { opacity: 0, x: 40, duration: 1.1, ease: "power3.out" }, "-=1");
+if (!rm) {
+  gsap.to(".stage-media video", { scale: 1.08, scrollTrigger: { trigger: "#launch", start: "top top", end: "bottom top", scrub: 1.2 } });
+  gsap.from(".expect-grid .img-card", { scrollTrigger: { trigger: "#expect", start: "top 70%" }, opacity: 0, y: 50, rotateX: 14, transformOrigin: "center bottom", stagger: .12, duration: 1, ease: "power3.out" });
+}
+</script>
+</body>
+</html>

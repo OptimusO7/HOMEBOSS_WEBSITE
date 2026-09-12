@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Open Graph -->
+<meta property="og:title" content="HomeBoss - Your Smart Home Automation System" />
+<meta property="og:description" content="Control your lights, doors, and home systems from your phone. The future of smart living is here." />
+<meta property="og:image" content="https://myhomeboss.com/homeboss-preview.png" />
+<meta property="og:url" content="https://myhomeboss.com" />
+<meta property="og:type" content="website" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="HomeBoss - Your Smart Home Automation System" />
+<meta name="twitter:description" content="Control your home with one touch. Smart. Simple. Secure." />
+<meta name="twitter:image" content="https://myhomeboss.com/homeboss-preview.png" />
+<meta name="google-site-verification" content="1mbok9bS91Vkcz03UdnHEoAknfeK5xoas6icndIfODU" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="HomeBoss - Smart home automation system by Optimus Technologies" />
+<title>HomeBoss — Take Control of Your Home</title>
+<link rel="icon" href="homeboss.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div id="progress-bar"></div>
+<nav id="navbar">
+  <a href="#hero" class="nav-logo interactive"><div class="nav-logo-mark"><img src="homeboss-white.png" alt="HomeBoss Logo"></div>HomeBoss</a>
+  <ul class="nav-links">
+    <li><a href="#hero" class="interactive">Home</a></li>
+    <li><a href="#features" class="interactive">Features</a></li>
+    <li><a href="#investors" class="interactive">Investors</a></li>
+    <li><a href="about.html" class="interactive">About</a></li>
+    <li><a href="blog.html" class="interactive">Blog</a></li>
+    <li><a href="studio.html" class="interactive">Studio</a></li>
+    <li><a href="#waitlist" class="interactive">Waitlist</a></li>
+  </ul>
+  <a href="#waitlist" class="nav-cta interactive">Join Waitlist</a>
+  <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+</nav>
+<section id="hero">
+  <div class="hero-bg-fallback"></div>
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-bg-text" id="heroBgText">HOMEBOSS</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="heroEye">HomeBoss · Smart Home Automation</div>
+    <h1 class="hero-h1" id="heroH1">
+      Take Control<br>
+      <span class="italic">of Your Home.</span><br>
+      <span class="stroke">Anytime. Anywhere.</span>
+    </h1>
+    <div class="hero-meta" id="heroMeta">
+      <p class="hero-desc">An intelligent home automation system that makes living smarter, safer, and effortless.</p>
+      <p class="hero-desc" style="font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-top:10px;color:rgba(238,238,242,.32)">Visitors: <span id="visitor-count">0</span></p>
+      <div class="hero-cta-wrap">
+        <a href="#reveal" class="btn-primary interactive">Explore System <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+        <a href="#demo" class="btn-ghost interactive">Watch Demo</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-status-card" id="heroStatus">
+    <div class="status-top"><span>Live System</span><span class="status-dot"></span></div>
+    <div class="status-grid">
+      <div class="status-cell"><b>24/7</b><span>Monitoring</span></div>
+      <div class="status-cell"><b>AI</b><span>Automation</span></div>
+      <div class="status-cell"><b>&lt;1s</b><span>Alerts</span></div>
+      <div class="status-cell"><b>6</b><span>Features</span></div>
+    </div>
+  </div>
+  <div class="scroll-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+</section>
+<div class="marquee-strip"><div class="marquee-inner" id="marqueeInner"></div></div>
+<section id="reveal" class="content-section">
+  <div class="container split">
+    <div class="reveal-copy">
+      <div class="section-tag">The Hub</div>
+      <h2 class="title">One System.<br><em>Smarter Living.</em></h2>
+      <p class="body-copy">Experience the future of home automation through one intelligent system. HomeBoss brings smart lighting, advanced security, door control, app integration, AI automation and energy efficiency into one calm command layer.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-val" data-count="100">0</div><div class="stat-lbl">Smart market size</div></div>
+        <div class="stat-item"><div class="stat-val" data-count="45">0</div><div class="stat-lbl">Projected growth</div></div>
+        <div class="stat-item"><div class="stat-val" data-count="2030">0</div><div class="stat-lbl">Vision target</div></div>
+      </div>
+    </div>
+    <div class="reveal-visual" id="revealVisual">
+      <div class="flabel fl-1"><div class="flabel-dot"></div><div class="flabel-line" style="width:40px"></div>Lighting</div>
+      <div class="flabel fl-2"><div class="flabel-dot"></div><div class="flabel-line" style="width:28px"></div>Security</div>
+      <div class="flabel fl-3"><div class="flabel-dot"></div><div class="flabel-line" style="width:34px"></div>Door Control</div>
+      <div class="flabel fl-4"><div class="flabel-dot"></div><div class="flabel-line" style="width:40px"></div>Mobile App</div>
+      <div class="flabel fl-5"><div class="flabel-dot"></div><div class="flabel-line" style="width:28px"></div>AI Automation</div>
+      <div class="flabel fl-6"><div class="flabel-dot"></div><div class="flabel-line" style="width:34px"></div>Energy</div>
+      <div class="product-frame interactive product-showcase" id="productFrame">
+        <div class="scan-line"></div>
+        <div class="product-slide-glow"></div>
+        <img class="product-img active" src="home_boss_1.png" alt="HomeBoss product on dark studio background">
+        <img class="product-img" src="product_scene.png" alt="HomeBoss product in smart home security scene">
+      </div>
+    </div>
+  </div>
+</section>
+<section id="performance" class="performance-strip">
+  <div class="container performance-inner">
+    <div>
+      <div class="section-tag">Product Character</div>
+      <h2 class="title fixed-title">
+        <span>Sharp.</span>
+        <span>Powerful.</span>
+        <span>Light.</span>
+        <span>Fast.</span>
+      </h2>
+    </div>
+    <div class="performance-words">
+      <span>Sharp</span>
+      <span>Powerful</span>
+      <span>Light</span>
+      <span>Fast</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE IMAGE MAP
+01 Smart Lighting: feature-lighting.jpg
+02 Advanced Security: feature-security.jpg
+03 Door Control: feature-door.jpg
+04 App Integration: feature-app.jpg
+05 AI Automation: feature-ai.jpg
+06 Energy Efficient: feature-energy.jpg
+-->
+<section id="features">
+  <div class="container">
+    <div class="features-head">
+      <div><div class="section-tag">Powerful Features</div><h2 class="features-title fixed-title"><span>Experience the</span><span>Future of</span><span>Home Automation.</span></h2></div>
+      <div class="features-count">Feature images are now matched to their correct functions. Hover over each full image card for the description and motion effect.</div>
+    </div>
+    <div class="cards-scroll-wrap feature-grid-mode">
+      <div class="cards-track" id="cardsTrack">
+        <article class="feat-card interactive">
+          <img class="feature-img" src="feature-lighting.jpg" alt="Smart Lighting" loading="lazy">
+          <div class="card-content">
+            <div class="card-top"><span class="card-num">01 / 06</span><span class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.74V17h8v-2.26A7 7 0 0 0 12 2Z"/></svg></span></div>
+            <h3 class="card-title">Smart Lighting</h3>
+            <p class="card-desc">Control your lights from anywhere. Set schedules, adjust brightness and create the perfect ambience.</p>
+            <div class="card-arrow">Explore <span>→</span></div>
+          </div>
+        </article>
+        <article class="feat-card interactive">
+          <img class="feature-img" src="feature-security.jpg" alt="Advanced Security" loading="lazy">
+          <div class="card-content">
+            <div class="card-top"><span class="card-num">02 / 06</span><span class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><path d="M12 15v2"/></svg></span></div>
+            <h3 class="card-title">Advanced Security</h3>
+            <p class="card-desc">Real time alerts, smart locks and continuous monitoring keep your home safe and secure.</p>
+            <div class="card-arrow">Explore <span>→</span></div>
+          </div>
+        </article>
+        <article class="feat-card interactive">
+          <img class="feature-img" src="feature-door.jpg" alt="Door Control" loading="lazy">
+          <div class="card-content">
+            <div class="card-top"><span class="card-num">03 / 06</span><span class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 21h16"/><path d="M7 21V3h10v18"/><path d="M14 12h.01"/></svg></span></div>
+            <h3 class="card-title">Door Control</h3>
+            <p class="card-desc">Unlock doors remotely, grant access to guests and remove the stress of lost keys.</p>
+            <div class="card-arrow">Explore <span>→</span></div>
+          </div>
+        </article>
+        <article class="feat-card interactive">
+          <img class="feature-img" src="feature-app.jpg" alt="App Integration" loading="lazy">
+          <div class="card-content">
+            <div class="card-top"><span class="card-num">04 / 06</span><span class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span></div>
+            <h3 class="card-title">App Integration</h3>
+            <p class="card-desc">Control everything from an intuitive mobile app built for iOS and Android users.</p>
+            <div class="card-arrow">Explore <span>→</span></div>
+          </div>
+        </article>
+        <article class="feat-card interactive">
+          <img class="feature-img" src="feature-ai.jpg" alt="AI Automation" loading="lazy">
+          <div class="card-content">
+            <div class="card-top"><span class="card-num">05 / 06</span><span class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></span></div>
+            <h3 class="card-title">AI Automation</h3>
+            <p class="card-desc">HomeBoss learns your habits, automates routines and adapts to your lifestyle intelligently.</p>
+            <div class="card-arrow">Explore <span>→</span></div>
+          </div>
+        </article>
+        <article class="feat-card interactive">
+          <img class="feature-img" src="feature-energy.jpg" alt="Energy Efficient" loading="lazy">
+          <div class="card-content">
+            <div class="card-top"><span class="card-num">06 / 06</span><span class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z"/></svg></span></div>
+            <h3 class="card-title">Energy Efficient</h3>
+            <p class="card-desc">Reduce energy costs with smart optimization and real time consumption tracking.</p>
+            <div class="card-arrow">Explore <span>→</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="demo" class="video-showcase-section">
+  <div class="container video-showcase-wrap">
+    <div class="video-showcase-head">
+      <div class="section-tag">Product Demo</div>
+      <h2 class="video-showcase-title">See HomeBoss in Action</h2>
+      <p class="video-showcase-sub">Watch the official HomeBoss demo and see how smart home automation becomes simple, visual and easy to control.</p>
+    </div>
+
+    <a class="video-showcase-frame video-link-card interactive" href="https://www.youtube.com/watch?v=NHk4eANZcnM" target="_blank" rel="noopener noreferrer" aria-label="Watch HomeBoss Demo on YouTube">
+      <img src="https://img.youtube.com/vi/NHk4eANZcnM/maxresdefault.jpg" alt="HomeBoss Demo video thumbnail">
+      <span class="play-button">▶</span>
+      <span class="watch-label">Watch on YouTube</span>
+    </a>
+  </div>
+</section>
+<section id="investors" class="content-section">
+  <div class="container split">
+    <div>
+      <div class="section-tag">Investors</div>
+      <h2 class="title fixed-title"><span>Join the</span><span>Smart Home</span><span>Revolution.</span></h2>
+      <p class="body-copy">HomeBoss is positioned at the forefront of the $100B+ smart home market. Our AI-driven automation platform offers unparalleled scalability and market potential.</p>
+      <a href="#waitlist" class="btn-primary interactive">Join Investor Waitlist</a>
+    </div>
+    <div class="market-card interactive">
+      <div class="section-tag">Market Potential</div>
+      <p class="body-copy">Our Vision: To empower 10 million homes with intelligent automation by 2030, creating safer, more efficient living spaces while building a sustainable recurring revenue model.</p>
+      <div class="market-grid">
+        <div class="market-item"><b>$100B+</b><span>Market Size</span></div>
+        <div class="market-item"><b>45%</b><span>Projected Annual Growth</span></div>
+        <div class="market-item"><b>2030</b><span>Launch Year</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="waitlist">
+  <div class="container waitlist-wrap">
+    <div>
+      <div class="section-tag">Be Among the First</div>
+      <h2 class="title fixed-title"><span>Join the</span><span>Exclusive</span><span>Waitlist.</span></h2>
+      <p class="body-copy">Join our exclusive waitlist and get early access to HomeBoss.</p>
+    </div>
+    <form class="form-card interactive" id="waitlistForm" method="POST" novalidate>
+      <div class="form-grid">
+        <div class="field"><label for="name">Full Name</label><input id="name" name="name" placeholder="Your name" required></div>
+        <div class="field"><label for="email">Email Address</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+        <div class="field"><label for="interest">Select Your Interest</label><select id="interest" name="interest" required><option value="">Choose one</option><option value="Customer · I want HomeBoss">Customer · I want HomeBoss</option><option value="Investor · Investment Opportunity">Investor · Investment Opportunity</option><option value="Other">Other</option></select></div>
+        <input type="hidden" id="otherInterest" name="other_interest" value="">
+        <label class="check-row"><input type="checkbox" id="consent" required> I agree to receive updates about HomeBoss</label>
+        <button class="btn-primary interactive" type="submit">Join Waitlist</button>
+        <div class="success-box" id="successBox"><strong>Welcome to HomeBoss.</strong><br><span id="successText">Thank you for joining our waitlist. Check your inbox for a confirmation email.</span></div>
+        <div class="success-box error-box" id="waitlistError" role="alert"></div>
+      </div>
+    </form>
+  </div>
+</section>
+<div class="interest-modal" id="interestModal" aria-hidden="true">
+  <div class="interest-modal-backdrop" id="modalBackdrop"></div>
+  <div class="interest-modal-card">
+    <button class="modal-close interactive" id="modalClose" type="button">×</button>
+    <div class="section-tag">Tell Us More</div>
+    <h3>What are you interested in?</h3>
+    <p>Type your specific request, question, partnership idea, or reason for joining the HomeBoss waitlist.</p>
+    <textarea id="otherInterestText" placeholder="Example: I want to partner with HomeBoss, request a demo, or ask about pricing..."></textarea>
+    <button class="btn-primary interactive" id="saveOtherInterest" type="button">Save Response</button>
+  </div>
+</div>
+<section id="blog" class="content-section">
+  <div class="container split">
+    <div>
+      <div class="section-tag">Blog</div>
+      <h2 class="title fixed-title"><span>Updates</span><span>from</span><span>HomeBoss.</span></h2>
+      <p class="body-copy">Follow product updates, smart home insights and development notes as HomeBoss moves toward launch.</p>
+    </div>
+    <div class="market-card interactive">
+      <div class="section-tag">Latest</div>
+      <p class="body-copy">No public blog posts have been added yet. This section is kept from the old website navigation so the new page remains ready for future updates.</p>
+      <a href="#waitlist" class="btn-primary interactive">Get Updates</a>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <div class="container">
+    <div class="features-head"><div><div class="section-tag">About</div><h2 class="features-title">Smarter, safer homes<br><em>through AI automation.</em></h2></div><div class="features-count">Optimus Technologies</div></div>
+    <div class="about-grid">
+      <div class="about-card interactive"><h3>Product</h3><p>HomeBoss helps people take control of the home through smart lighting, security, door access, mobile control, AI automation and energy efficiency.</p></div>
+      <div class="about-card interactive"><h3>Company</h3><p>Optimus Technologies is building HomeBoss around safer, more efficient living spaces and a sustainable recurring revenue model.</p></div>
+      <div class="about-card interactive"><h3>Connect</h3><p>Customers, investors and early users can join the waitlist to receive progress updates and early access information.</p></div>
+    </div>
+  </div>
+</section>
+<section id="finale">
+  <div class="finale-glow"></div><div class="finale-rule"></div>
+  <div class="finale-tag">Ready to take control?</div>
+  <h2 class="finale-h2" id="finaleH2">Take Control<span class="line2">Anytime. Anywhere.</span></h2>
+  <p class="finale-sub">Your home. Your rules. Smarter, safer and effortless.</p>
+  <div class="finale-btns"><a href="#waitlist" class="btn-primary interactive">Join Waitlist</a><a href="#features" class="btn-ghost interactive">Explore Features</a></div>
+</section>
+<footer>
+  <div><div class="footer-logo">HomeBoss</div><p class="footer-desc">Empowering smarter, safer homes through AI-driven automation.</p></div>
+  <div class="footer-col"><h4>Product</h4><a href="#features">Features</a><a href="#demo">Demo</a><a href="#waitlist">Waitlist</a></div>
+  <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="#investors">Investors</a><a href="#waitlist">Contact</a></div>
+  <div class="footer-col"><h4>Connect</h4><span>GitHub</span><span>Updates</span><span>Community</span></div>
+  <div class="footer-copy">© 2025 Optimus Technologies. All rights reserved.</div>
+</footer>
+
+<!-- Prototype Launch Popup -->
+<div class="proto-popup-overlay" id="proto-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="proto-popup-title" aria-hidden="true">
+  <div class="proto-popup">
+    <button class="proto-popup-close interactive" id="proto-popup-close" aria-label="Close">&times;</button>
+    <span class="proto-popup-badge">Big news</span>
+    <h3 id="proto-popup-title">Our Prototype Launch is Coming!</h3>
+    <div class="proto-popup-date">August 8, 2026</div>
+    <p>Be part of the moment HomeBoss comes to life. Register now to join the launch as an investor, a customer, or a spectator.</p>
+    <a href="/prototype" class="btn-primary interactive">Register for the launch</a>
+    <button class="proto-popup-dismiss interactive" id="proto-popup-dismiss">Maybe later</button>
+  </div>
+</div>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const dot=document.getElementById('cur-dot');
+const ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.interactive,.feat-card,.stat-item,.demo-cell,.layer-item').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'))});
+const pb=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;pb.style.width=pct+'%';document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);const bg=document.getElementById('heroBgText');if(bg)bg.style.transform=`translateX(${window.scrollY*-0.08}px)`});
+const tickerItems=['Smart Lighting','Advanced Security','Door Control','App Integration','AI Automation','Energy Efficient','Take Control Anywhere'];
+const track=document.getElementById('tickerTrack');let tickerHTML='';for(let i=0;i<4;i++)tickerItems.forEach(t=>{tickerHTML+=`<div class="ticker-item"><div class="ticker-dot"></div>${t}</div>`});track.innerHTML=tickerHTML;
+const marqueeWords=['HomeBoss','Smart Living','Take Control','Anytime Anywhere','AI Automation','Safer Homes','Energy Efficient','Smart Lighting','Advanced Security','Door Control'];
+const mi=document.getElementById('marqueeInner');let mHTML='';for(let i=0;i<2;i++)marqueeWords.forEach(w=>{mHTML+=`<div class="marquee-word">${w}<span>◆</span></div>`});mi.innerHTML=mHTML;
+gsap.set(['#heroEye','#heroH1','#heroMeta','#heroStatus'],{opacity:0});
+const heroTl=gsap.timeline({delay:.25});
+heroTl.fromTo('#heroEye',{opacity:0,y:18},{opacity:1,y:0,duration:.9,ease:'power2.out'}).fromTo('#heroH1',{opacity:0,y:50,skewY:2},{opacity:1,y:0,skewY:0,duration:1.25,ease:'power3.out'},'-=.45').fromTo('#heroMeta',{opacity:0,y:24},{opacity:1,y:0,duration:1,ease:'power2.out'},'-=.7').to('#heroStatus',{opacity:1,y:0,duration:.9,ease:'power3.out'},'-=.75');
+gsap.to('.hero-video',{scale:1.08,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1.2}});
+gsap.to('#heroBgText',{y:-60,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1}});
+gsap.from('.reveal-copy > *',{scrollTrigger:{trigger:'#reveal',start:'top 72%'},opacity:0,y:36,duration:1,stagger:.15,ease:'power3.out'});
+gsap.from('#productFrame',{scrollTrigger:{trigger:'#reveal',start:'top 65%'},opacity:0,y:50,scale:.96,duration:1.4,ease:'power3.out'});
+gsap.utils.toArray('.flabel').forEach((el,i)=>{gsap.fromTo(el,{opacity:0,x:i<3?-14:14},{scrollTrigger:{trigger:'#reveal',start:'top 55%'},opacity:1,x:0,duration:.7,delay:.4+i*.12,ease:'power2.out'});gsap.to(el,{y:i%2===0?-7:7,duration:2.8+i*.2,repeat:-1,yoyo:true,ease:'sine.inOut',delay:i*.15})});
+const productFrame=document.getElementById('productFrame');const revealVisual=document.getElementById('revealVisual');revealVisual.addEventListener('mousemove',e=>{const r=revealVisual.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;gsap.to(productFrame,{rotateY:x*16,rotateX:y*-12,duration:.45,ease:'power2.out'})});revealVisual.addEventListener('mouseleave',()=>gsap.to(productFrame,{rotateY:0,rotateX:0,duration:.8,ease:'elastic.out(1,.45)'}));
+
+const productImages=document.querySelectorAll('#productFrame .product-img');
+let productImageIndex=0;
+function showNextProductImage(){
+  if(productImages.length<2) return;
+  const frame=document.getElementById('productFrame');
+  const current=productImages[productImageIndex];
+  productImageIndex=(productImageIndex+1)%productImages.length;
+  const next=productImages[productImageIndex];
+  frame.classList.add('is-switching');
+  current.classList.remove('active');
+  next.classList.add('active');
+  gsap.fromTo(next,{scale:1.08,opacity:0},{scale:1,opacity:1,duration:1.15,ease:'power3.out'});
+  gsap.fromTo(current,{scale:1,opacity:1},{scale:1.04,opacity:0,duration:1.05,ease:'power2.inOut'});
+  setTimeout(()=>frame.classList.remove('is-switching'),1300);
+}
+let productAutoPlay=setInterval(showNextProductImage,4200);
+document.getElementById('productFrame').addEventListener('mouseenter',()=>clearInterval(productAutoPlay));
+document.getElementById('productFrame').addEventListener('mouseleave',()=>{productAutoPlay=setInterval(showNextProductImage,4200)});
+
+ScrollTrigger.create({trigger:'.stat-row',start:'top 80%',once:true,onEnter:()=>{document.querySelectorAll('[data-count]').forEach(el=>{const target=Number(el.dataset.count);let cur=0;const step=Math.max(1,Math.ceil(target/46));const tick=()=>{cur=Math.min(target,cur+step);el.textContent=target===100?'$'+cur+'B+':target===45?cur+'%':cur;if(cur<target)requestAnimationFrame(tick)};tick()})}});
+const track2=document.getElementById('cardsTrack');let dragging=false,startX=0,scrollLeft=0;track2.addEventListener('mousedown',e=>{dragging=true;startX=e.pageX-track2.offsetLeft;scrollLeft=track2.parentElement.scrollLeft});window.addEventListener('mouseup',()=>dragging=false);window.addEventListener('mousemove',e=>{if(!dragging)return;e.preventDefault();const x=e.pageX-track2.offsetLeft;track2.parentElement.scrollLeft=scrollLeft-(x-startX)});
+document.querySelectorAll('.feat-card').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',e.clientX-r.left+'px');card.style.setProperty('--my',e.clientY-r.top+'px')})});
+document.querySelectorAll('.feature-img').forEach((img,index)=>{
+  const fallback=[
+    'linear-gradient(135deg,#1c2433,#f0a13a)',
+    'linear-gradient(135deg,#071d35,#00b7ff)',
+    'linear-gradient(135deg,#111827,#5eead4)',
+    'linear-gradient(135deg,#f4f4f4,#9ca3af)',
+    'linear-gradient(135deg,#0f172a,#b7791f)',
+    'linear-gradient(135deg,#e5e7eb,#0ea5e9)'
+  ][index] || 'linear-gradient(135deg,#111827,#4fc3f7)';
+  img.addEventListener('error',()=>{
+    img.style.display='none';
+    img.closest('.feat-card').style.background=fallback;
+  });
+});
+gsap.from('.feat-card',{scrollTrigger:{trigger:'#features',start:'top 68%'},opacity:0,y:50,stagger:.1,duration:.9,ease:'power3.out'});
+gsap.to('#demoParallax',{scrollTrigger:{trigger:'#demo',start:'top bottom',end:'bottom top',scrub:1.5},y:-80,scale:1.08,ease:'none'});
+gsap.from('#demoH2,.demo-sub,.demo-panel',{scrollTrigger:{trigger:'#demo',start:'top 65%'},opacity:0,y:40,stagger:.14,duration:1,ease:'power3.out'});
+document.getElementById('demo').addEventListener('mousemove',e=>{const r=document.getElementById('demo').getBoundingClientRect();const xPct=(e.clientX-r.left)/r.width;const yPct=(e.clientY-r.top)/r.height;gsap.to('.sp1',{x:(xPct-.5)*-60,y:(yPct-.5)*-30,duration:1.2,ease:'power2.out'});gsap.to('.sp2',{x:(xPct-.5)*60,y:(yPct-.5)*30,duration:1.2,ease:'power2.out'})});
+gsap.utils.toArray('.market-card,.form-card,.about-card').forEach(el=>{gsap.from(el,{scrollTrigger:{trigger:el,start:'top 82%'},opacity:0,y:40,duration:.95,ease:'power3.out'})});
+gsap.from('#finaleH2',{scrollTrigger:{trigger:'#finale',start:'top 72%'},opacity:0,y:60,duration:1.5,ease:'power3.out'});
+gsap.from('.finale-sub,.finale-btns',{scrollTrigger:{trigger:'#finale',start:'top 65%'},opacity:0,y:24,stagger:.15,duration:1,delay:.3,ease:'power2.out'});
+document.querySelectorAll('.btn-primary,.nav-cta').forEach(btn=>{btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;gsap.to(btn,{x:x*.16,y:y*.16,duration:.35,ease:'power2.out'})});btn.addEventListener('mouseleave',()=>gsap.to(btn,{x:0,y:0,duration:.5,ease:'elastic.out(1,.5)'}))});
+const interestSelect=document.getElementById('interest');
+const otherInterest=document.getElementById('otherInterest');
+const interestModal=document.getElementById('interestModal');
+const otherInterestText=document.getElementById('otherInterestText');
+const saveOtherInterest=document.getElementById('saveOtherInterest');
+const modalClose=document.getElementById('modalClose');
+const modalBackdrop=document.getElementById('modalBackdrop');
+function openInterestModal(){
+  interestModal.classList.add('show');
+  interestModal.setAttribute('aria-hidden','false');
+  setTimeout(()=>otherInterestText.focus(),80);
+}
+function closeInterestModal(){
+  interestModal.classList.remove('show');
+  interestModal.setAttribute('aria-hidden','true');
+}
+interestSelect.addEventListener('change',()=>{
+  if(interestSelect.value==='Other') openInterestModal();
+  else otherInterest.value='';
+});
+saveOtherInterest.addEventListener('click',()=>{
+  const value=otherInterestText.value.trim();
+  if(!value){
+    alert('Please type your specific interest.');
+    return;
+  }
+  otherInterest.value=value;
+  closeInterestModal();
+});
+modalClose.addEventListener('click',closeInterestModal);
+modalBackdrop.addEventListener('click',closeInterestModal);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeInterestModal();});
+const form=document.getElementById('waitlistForm');
+const success=document.getElementById('successBox');
+const successText=document.getElementById('successText');
+const errorBox=document.getElementById('waitlistError');
+const consentBox=document.getElementById('consent');
+const submitBtn=form.querySelector('button[type="submit"]');
+
+function showWaitlistError(message){
+  errorBox.textContent=message;
+  errorBox.classList.add('show');
+  gsap.fromTo(errorBox,{opacity:0,y:10},{opacity:1,y:0,duration:.35,ease:'power2.out'});
+}
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  errorBox.classList.remove('show');
+  success.classList.remove('show','fade-out');
+
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const interest=interestSelect.value;
+
+  if(!name||!email||!interest){
+    showWaitlistError('Please fill in every field.');
+    return;
+  }
+  if(!consentBox.checked){
+    showWaitlistError('Please agree to receive updates about HomeBoss.');
+    return;
+  }
+  if(interest==='Other' && !otherInterest.value.trim()){
+    openInterestModal();
+    return;
+  }
+
+  submitBtn.disabled=true;
+  submitBtn.textContent='Sending...';
+
+  try{
+    const response=await fetch('/api/waitlist',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name,
+        email,
+        interest,
+        otherInterest:otherInterest.value.trim(),
+        consent:consentBox.checked
+      })
+    });
+    const result=await response.json().catch(()=>({}));
+
+    if(response.ok && result.success){
+      form.reset();
+      otherInterest.value='';
+      successText.textContent="Thank you for joining our waitlist. Check your inbox for a confirmation email.";
+      success.classList.add('show');
+      gsap.fromTo(success,{opacity:0,y:12},{opacity:1,y:0,duration:.45,ease:'power2.out'});
+      setTimeout(()=>{
+        success.classList.add('fade-out');
+        setTimeout(()=>success.classList.remove('show','fade-out'),380);
+      },6000);
+    }else{
+      showWaitlistError(result.error||'Something went wrong. Please try again.');
+    }
+  }catch(error){
+    showWaitlistError('Network error. Please check your connection and try again.');
+  }
+
+  submitBtn.disabled=false;
+  submitBtn.textContent='Join Waitlist';
+});
+
+/* ===== REAL VISITOR COUNTER (MongoDB backend) ===== */
+(async function initVisitorCounter(){
+  const el=document.getElementById('visitor-count');
+  if(!el) return;
+  try{
+    const t=await fetch('/api/track-visit',{method:'POST'});
+    await t.json().catch(()=>({}));
+    const r=await fetch('/api/visitors');
+    const data=await r.json();
+    let cur=0;const target=data.total||0;const inc=Math.max(1,Math.ceil(target/60));
+    const timer=setInterval(()=>{cur+=inc;if(cur>=target){cur=target;clearInterval(timer)}el.textContent=cur.toLocaleString()},30);
+  }catch(err){console.error('Visitor tracking failed:',err)}
+})();
+
+/* ===== MOBILE MENU TOGGLE ===== */
+(function initMobileMenu(){
+  const t=document.getElementById('mobile-menu');
+  const menu=document.querySelector('.nav-links');
+  if(!t||!menu) return;
+  t.addEventListener('click',()=>{menu.classList.toggle('open');t.classList.toggle('active')});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');t.classList.remove('active')}));
+})();
+
+/* ===== PROTOTYPE LAUNCH POPUP ===== */
+(function initPrototypePopup(){
+  const overlay=document.getElementById('proto-popup-overlay');
+  if(!overlay) return;
+  const closeBtn=document.getElementById('proto-popup-close');
+  const dismissBtn=document.getElementById('proto-popup-dismiss');
+  const open=()=>{overlay.classList.add('show');overlay.setAttribute('aria-hidden','false')};
+  const close=()=>{overlay.classList.remove('show');overlay.setAttribute('aria-hidden','true')};
+  let show=true;
+  try{const last=localStorage.getItem('homeboss_proto_popup_seen');if(last&&(Date.now()-Number(last))<864e5)show=false}catch(e){}
+  if(!show) return;
+  setTimeout(()=>{open();try{localStorage.setItem('homeboss_proto_popup_seen',String(Date.now()))}catch(e){}},3000);
+  if(closeBtn)closeBtn.addEventListener('click',close);
+  if(dismissBtn)dismissBtn.addEventListener('click',close);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+})();
+
+</script>
+
+</body>
+</html>
